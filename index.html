@@ -14,7 +14,7 @@
     <script src="./jquery-3.7.1.min.js"></script>
 
     <link rel="stylesheet" href="./keyboard.css" />
-    <link rel="stylesheet" href="./st.css" />
+    <link rel="stylesheet" href="./style.css" />
 
     <title>Creative Media Campus</title>
   </head>
@@ -24,7 +24,7 @@
         <div class="row justify-content-center h-100">
           <div class="col-12 p-0">
             <div id="step-one" class="screen-container-step">
-              <img src="./assets/logo.png" class="logo" alt="" />
+              <img src="./assets/logo.png" class="logo" style="display: none;" alt="" />
               <img src="./assets/background_1.png" class="background-1" />
               <img src="./assets/outline.png" class="outline" />
               <img
@@ -367,17 +367,26 @@
       const showTab = (i) => {
         let time = 200;
 
+        if(i == 0 || i == 4) {
+          $('.logo').css('display', 'none')
+        } else {
+          $('.logo').css('display', 'block')
+        }
+
         console.log("ok");
         if (timeoutTab) clearTimeout(timeoutTab);
 
         document.querySelectorAll(`.step-content`).forEach((e, index) => {
           console.log("ok2");
-          $(e).fadeOut(time);
+          //$(e).fadeOut(time);
           if (index == i) {
-            timeoutTab = setTimeout(() => {
+            e.style.display = "flex"
+            /*timeoutTab = setTimeout(() => {
               console.log("ok3");
               $(e).css("display", "flex").hide().fadeIn(time);
-            }, time);
+            }, time);*/
+          } else {
+            e.style.display = "none"
           }
         });
       };
