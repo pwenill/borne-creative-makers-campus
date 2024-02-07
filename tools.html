@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="clearAll" onclick="clearsdqd()">Supprimer tout les données</button>
+    <button id="download" onclick="download()">Telecharger les données</button>
+
+    <script>
+      const clearsdqd = () => {
+        localStorage.removeItem('clients')
+        alert("ok")
+      };
+
+      const download = () => {
+        const dataStr = JSON.stringify(JSON.parse(localStorage.getItem('clients')), null, 2);
+        const blob = new Blob([dataStr], { type: "application/json" });
+
+        // Créer un lien pour le téléchargement
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "data.json";
+
+        // Déclencher le téléchargement
+        document.body.appendChild(link); // Ajouter le lien au document
+        link.click(); // Cliquer sur le lien
+        document.body.removeChild(link);
+      };
+    </script>
+  </body>
+</html>
