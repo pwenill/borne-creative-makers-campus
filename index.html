@@ -56,15 +56,15 @@
                     <img src="./assets/page2/text.png" class="w-100" alt="" />
                   </div>
 
-                  <div class="card-formation formationType">
+                  <div class="card-formation formationType" style="margin-top: 9rem;">
                     <img
                       src="./assets/page2/card.png"
                       class="card-background"
                       alt=""
                     />
                     <div
-                      class="row align-items-center justify-content-center row-cols-2"
-                      style="z-index: 55; height: 90%"
+                      class="row align-items-center h-100 justify-content-center row-cols-2"
+                      style="z-index: 55;"
                     >
                       <div class="col">
                         <img
@@ -410,13 +410,13 @@
         document.querySelectorAll(`.step-content`).forEach((e, index) => {
           $(e).fadeOut(time);
           if (index == i) {
-            e.style.display = "flex";
+            //e.style.display = "flex";
             timeoutTab = setTimeout(() => {
               console.log("ok3");
               $(e).css("display", "flex").hide().fadeIn(time);
             }, time);
           } else {
-            e.style.display = "none";
+            //e.style.display = "none";
           }
         });
       };
