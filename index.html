@@ -20,20 +20,6 @@
   </head>
   <body>
     <section id="screen">
-      <div
-        class="loading"
-        style="position: absolute;
-        inset: 0;
-        z-index: 999999999;
-        background: #00000008;"
-      >
-        <div class="d-flex h-100 align-items-center justify-content-center">
-          <div class="spinner-border text-light" style="    width: 13rem;
-          height: 13rem;" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
-      </div>
 
       <div class="container-fluid h-100">
         <div class="row justify-content-center h-100">
@@ -271,6 +257,9 @@
 
       $(document).ready(() => {
         $('.loading').fadeOut(100)
+        setInterval(() => {
+          console.log("o")
+        }, 1000)
       });
 
       $(document).on('click', 'button, [data-switch-page]', () => {
@@ -416,18 +405,16 @@
           $(".logo").css("display", "block");
         }
 
-        console.log("ok");
         if (timeoutTab) clearTimeout(timeoutTab);
 
         document.querySelectorAll(`.step-content`).forEach((e, index) => {
-          console.log("ok2");
-          //$(e).fadeOut(time);
+          $(e).fadeOut(time);
           if (index == i) {
             e.style.display = "flex";
-            /*timeoutTab = setTimeout(() => {
+            timeoutTab = setTimeout(() => {
               console.log("ok3");
               $(e).css("display", "flex").hide().fadeIn(time);
-            }, time);*/
+            }, time);
           } else {
             e.style.display = "none";
           }
