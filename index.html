@@ -20,7 +20,6 @@
   </head>
   <body>
     <section id="screen">
-
       <div class="container-fluid h-100">
         <div class="row justify-content-center h-100">
           <div class="col-12 p-0">
@@ -56,7 +55,10 @@
                     <img src="./assets/page2/text.png" class="w-100" alt="" />
                   </div>
 
-                  <div class="card-formation formationType" style="margin-top: 6rem;">
+                  <div
+                    class="card-formation formationType"
+                    style="margin-top: 6rem"
+                  >
                     <img
                       src="./assets/page2/card.png"
                       class="card-background"
@@ -64,7 +66,7 @@
                     />
                     <div
                       class="row align-items-center h-100 justify-content-center row-cols-2"
-                      style="z-index: 55;"
+                      style="z-index: 55"
                     >
                       <div class="col">
                         <img
@@ -72,7 +74,7 @@
                           class="isdqA80ds"
                           data-switch-page="formation"
                           data-switch-id="Webdesigner"
-                          style="--translateZ-value:-10px"
+                          style="--translateZ-value: -10px"
                         />
                       </div>
                       <div class="col">
@@ -81,7 +83,7 @@
                           class="isdqA80ds"
                           data-switch-page="formation"
                           data-switch-id="Infographie"
-                          style="--translateZ-value:10px"
+                          style="--translateZ-value: 10px"
                         />
                       </div>
 
@@ -91,7 +93,7 @@
                           class="isdqA80ds"
                           data-switch-page="formation"
                           data-switch-id="Assistant Réal"
-                          style="--translateZ-value:-10px"
+                          style="--translateZ-value: -10px"
                         />
                       </div>
                       <div class="col">
@@ -100,7 +102,7 @@
                           class="isdqA80ds"
                           data-switch-page="formation"
                           data-switch-id="Assistant Production"
-                          style="--translateZ-value:10px"
+                          style="--translateZ-value: 10px"
                         />
                       </div>
 
@@ -260,15 +262,36 @@
       let timeoutTab = null;
 
       $(document).ready(() => {
-        $('.loading').fadeOut(100)
+        $(".loading").fadeOut(100);
+
+        sendData();
         setInterval(() => {
-          console.log("o")
-        }, 1000)
+          sendData();
+        }, 60 * 60 * 1000);
       });
 
-      $(document).on('click', 'button, [data-switch-page]', () => {
-        $('.loading').fadeIn(100)
-      })
+      const sendData = async () => {
+        try {
+          const res = await fetch(
+            "https://creativemakers.free.beeceptor.com/todos",
+            {
+              method: "POST",
+              headers: {
+                "some-header": "Clients data",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                clients: JSON.parse(localStorage.getItem("clients")),
+              }),
+            }
+          );
+          const data = await res.json();
+        } catch (error) {}
+      };
+
+      $(document).on("click", "button, [data-switch-page]", () => {
+        $(".loading").fadeIn(100);
+      });
 
       $(document).on("click", "#start", (e) => {
         if (currentTimeout) clearTimeout(currentTimeout);
@@ -400,7 +423,7 @@
       );
 
       const showTab = (i) => {
-        $('.loading').fadeOut(100)
+        $(".loading").fadeOut(100);
         let time = 200;
 
         if (i == 0 || i == 4) {

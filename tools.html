@@ -6,17 +6,33 @@
     <title>Document</title>
   </head>
   <body>
-    <button id="clearAll" onclick="clearsdqd()">Supprimer tout les données</button>
+    <button id="clearAll" onclick="clearsdqd()">
+      Supprimer tout les données
+    </button>
     <button id="download" onclick="download()">Telecharger les données</button>
 
+    <div id="counter">0</div>
+
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("#counter").innerHTML = JSON.parse(
+          localStorage.getItem("clients")
+        )
+          ? JSON.parse(localStorage.getItem("clients")).length
+          : 0;
+      });
+
       const clearsdqd = () => {
-        localStorage.removeItem('clients')
-        alert("ok")
+        localStorage.removeItem("clients");
+        alert("ok");
       };
 
       const download = () => {
-        const dataStr = JSON.stringify(JSON.parse(localStorage.getItem('clients')), null, 2);
+        const dataStr = JSON.stringify(
+          JSON.parse(localStorage.getItem("clients")),
+          null,
+          2
+        );
         const blob = new Blob([dataStr], { type: "application/json" });
 
         // Créer un lien pour le téléchargement
