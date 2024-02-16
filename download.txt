@@ -1,0 +1,17 @@
+const dataStr = JSON.stringify(
+    JSON.parse(localStorage.getItem("clients"))
+      ? JSON.parse(localStorage.getItem("clients"))
+      : [],
+    null,
+    2
+  );
+  const blob = new Blob([dataStr], { type: "application/json" });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `clients-${Math.floor(Math.random() * 1000)}.json`;
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);

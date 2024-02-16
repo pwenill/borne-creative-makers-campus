@@ -1,6 +1,3 @@
-document.timerMonitoring = null;
-document.activeDelete = false;
-
 document.addEventListener("keydown", (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key === "s") {
     e.preventDefault();
@@ -19,11 +16,14 @@ document.addEventListener("keydown", (e) => {
     localStorage.removeItem("clients");
     $("#counter").html("0");
     $(".monitoring-container #deleteAll").html("Supprimer tout");
+    document.activeDelete = false;
   }
 
   if ((e.ctrlKey || e.metaKey) && e.key == "m") {
     e.preventDefault();
     document.countTimerMonitoring = 30;
+    document.timerMonitoring = null;
+    document.activeDelete = false;
 
     $(".monitoring-container").remove();
     $("body").append(`<div class="monitoring-container">
@@ -57,25 +57,21 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-$(document).on('click', '#download', (e) => {
-  download()
-})
+$(document).on("click", "#download", (e) => {
+  download();
+});
 
 $(document).on("click", ".monitoring-container #closeMoni", () => {
   $(".monitoring-container").remove();
   document.activeDelete = false;
 });
 
-$(document).on(
-  "click",
-  ".monitoring-container #deleteAll",
-  (e) => {
-    if (!document.activeDelete) {
-      $(e.target).html("CTRL + C");
-      document.activeDelete = true;
-    }
+$(document).on("click", ".monitoring-container #deleteAll", (e) => {
+  if (!document.activeDelete) {
+    $(e.target).html("CTRL + C");
+    document.activeDelete = true;
   }
-);
+});
 
 const download = () => {
   const dataStr = JSON.stringify(
