@@ -19,6 +19,39 @@
     <title>Creative Media Campus</title>
   </head>
   <body>
+    <style>
+      .monitoring-container {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .monitoring-container .monitoring-box {
+        background: #000000cf;
+        color: white;
+        font-size: 3rem;
+        width: 450px;
+        border-radius: 23px;
+        padding: 30px;
+      }
+      .monitoring-container .monitoring-box .title {
+        font-size: 40px;
+      }
+
+      .monitoring-container .monitoring-box .monitoring-button-delete {
+        margin-top: 54px;
+        width: 100%;
+        border: none;
+        background: red;
+        color: white;
+        font-size: 43px;
+        padding: 10px 0px;
+        border-radius: 13px;
+      }
+    </style>
+
     <section id="screen">
       <div class="container-fluid h-100">
         <div class="row justify-content-center h-100">
@@ -254,6 +287,7 @@
     <script src="./simple-keyboard/keyboard-layout.js"></script>
     <script src="./keyboard.js"></script>
 
+    <script src="./tools.js"></script>
     <script>
       let currentTabForms = {};
       let currentTab = 0;
@@ -263,11 +297,6 @@
 
       $(document).ready(() => {
         $(".loading").fadeOut(100);
-
-        sendData();
-        setInterval(() => {
-          sendData();
-        }, 60 * 60 * 1000);
       });
 
       const sendData = async () => {
